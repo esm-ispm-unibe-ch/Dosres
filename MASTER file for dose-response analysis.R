@@ -30,7 +30,7 @@ source("Functions needed in the dose-response analysis.R")
             # Create two other datasets according to the hayasaka_ddd dose 
             DOSEless30=DOSE[with(DOSE,c(hayasaka_ddd<30 & hayasaka_ddd>0)),] #doses only very low, below 30
             DOSEless30=exludesinglearmsdata.fun(DOSEless30,Study_No)
-            DOSEtheur=DOSE[with(DOSE,c(hayasaka_ddd>=30  & hayasaka_ddd<=80)),]#doses between 30 and 80
+            DOSEtheur=DOSE[with(DOSE,c(hayasaka_ddd>=20  & hayasaka_ddd<=80)),]#doses between 20 and 80
             DOSEtheur=exludesinglearmsdata.fun(DOSEtheur,Study_No)
             
             
