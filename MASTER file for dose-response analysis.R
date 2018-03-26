@@ -63,6 +63,8 @@ source("Functions needed in the dose-response analysis.R")
             # to produce graphs for all drugs given between 0.75 and 30 mg
             source("Dosres all study designs 075 to 30.R")
             
+            # an educational plot and summary for 12 studies with dose between 20 and 60 for response
+            source("Educational analysis Dosres 7 study for therapeutic doses.R")
             rm(list=ls())
             
             
