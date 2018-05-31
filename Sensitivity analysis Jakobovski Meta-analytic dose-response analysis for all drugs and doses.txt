@@ -1,0 +1,210 @@
+
+ 
+ 
+ DOSE RESPONSE ANALYSIS OF ALL ACTIVE DRUGS GIVEN AT ANY DOSE using Jakubovski AND PLACEBO 
+ 
+ 
+From all analyses I excluded studies with zero events and studies with less than 2 different doses evaluated.
+ 
+    Active drugs as well as Placebo are included.
+
+ There are 283 studies comparing all doses . 
+which include the drugs: placebo agomelatine fluoxetine paroxetine venlafaxine bupropion sertraline escitalopram citalopram desvenlafaxine duloxetine fluvoxamine levomilnacipran milnacipran mirtazapine reboxetine vilazodone vortioxetine 
+
+The knots I used in the splines are at doses 10,20,50 mg
+-----------------------------------------------
+
+-------- RESPONSE -----------------------------
+
+-------- Linear response -----------------------------
+******For the linear model there are 254 studies 
+Call:  dosresmeta(formula = logRR ~ jakubovski_ddd, id = Study_No, type = type, 
+    cases = Responders, n = No_randomised, data = mymoredata, 
+    se = selogRR, method = "reml")
+
+Two-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 143.6981 (df = 1), p-value = 0.0000
+
+Fixed-effects coefficients
+             Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+(Intercept)    0.0065      0.0005  11.9874    0.0000    0.0054    0.0075  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+  Std. Dev
+    0.0053
+
+Univariate Cochran Q-test for residual heterogeneity:
+Q = 584.0551 (df = 253), p-value = 0.0000
+I-square statistic = 56.7%
+
+254 studies, 254 values, 1 fixed and 1 random-effects parameters
+    logLik         AIC         BIC  
+  710.0759  -1416.1519  -1409.0851  
+
+RESULT: The RR for response from dose 10 to dose 30 is 1.138 
+
+-------- Splines response -----------------------------
+
+******For the spline model we have in total 254 studiesCall:  dosresmeta(formula = logRR ~ rcs(jakubovski_ddd, knots), id = Study_No, 
+    type = type, cases = Responders, n = No_randomised, data = mymoredata, 
+    se = selogRR, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 239.4339 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                           Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0112      0.0008  14.4054    0.0000    0.0097    0.0127  ***
+rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0174      0.0018  -9.5812    0.0000   -0.0209   -0.0138  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                           Std. Dev                                      Corr
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0067  rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0123                                   -0.9778
+
+254 studies, 382 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+ 44.3756  -78.7512  -59.0503  
+
+
+-----------------------------------------------
+
+-------- DROPOUT  -----------------------------
+
+-------- Linear dropout -----------------------------
+
+******For the linear model there are 244 studies 
+Call:  dosresmeta(formula = logRRdrop ~ jakubovski_ddd, id = Study_No, 
+    type = type, cases = Dropouts_total, n = No_randomised, data = mymoredata, 
+    se = selogRRdrop)
+
+Two-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 7.1206 (df = 1), p-value = 0.0076
+
+Fixed-effects coefficients
+             Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub    
+(Intercept)    0.0016      0.0006  2.6684    0.0076    0.0004    0.0028  **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+  Std. Dev
+    0.0041
+
+Univariate Cochran Q-test for residual heterogeneity:
+Q = 362.0458 (df = 243), p-value = 0.0000
+I-square statistic = 32.9%
+
+244 studies, 244 values, 1 fixed and 1 random-effects parameters
+    logLik         AIC         BIC  
+  643.9916  -1283.9833  -1276.9971  
+
+RESULT: The RR for dropout from dose 10 to dose 30  is 1.032 
+
+-------- Splines dropout -----------------------------
+******For the splines model we have in total 244 studiesCall:  dosresmeta(formula = logRRdrop ~ rcs(jakubovski_ddd, knots), 
+    id = Study_No, type = type, cases = Dropouts_total, n = No_randomised, 
+    data = mymoredata, se = selogRRdrop, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 7.8636 (df = 2), p-value = 0.0196
+
+Fixed-effects coefficients
+                                           Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub   
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0014      0.0010  1.3934    0.1635   -0.0006    0.0033   
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0008      0.0024  0.3165    0.7516   -0.0040    0.0056   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                           Std. Dev                                      Corr
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0057  rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0078                                   -0.8441
+
+244 studies, 374 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-47.1615  104.3230  123.9175  
+
+
+-----------------------------------------------
+
+-------- DROPOUT DUE TO AE --------------------
+
+-------- Linear dropout AE -----------------------------
+**** For the linear model 218 studies 
+Call:  dosresmeta(formula = logRRdropAE ~ jakubovski_ddd, id = Study_No, 
+    type = type, cases = Dropouts_sideeffects, n = No_randomised, 
+    data = mymoredata, se = selogRRdropAE)
+
+Two-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 171.9614 (df = 1), p-value = 0.0000
+
+Fixed-effects coefficients
+             Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+(Intercept)    0.0183      0.0014  13.1134    0.0000    0.0156    0.0211  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+  Std. Dev
+    0.0089
+
+Univariate Cochran Q-test for residual heterogeneity:
+Q = 354.3391 (df = 217), p-value = 0.0000
+I-square statistic = 38.8%
+
+218 studies, 218 values, 1 fixed and 1 random-effects parameters
+   logLik        AIC        BIC  
+ 409.8699  -815.7399  -808.9801  
+
+RESULT: The RR for AEdropout from dose 30 to dose 80  is 2.499 
+
+-------- Splines dropout AE -----------------------------
+
+******For the splines model we have in total 218 studies
+Call:  dosresmeta(formula = logRRdropAE ~ rcs(jakubovski_ddd, knots), 
+    id = Study_No, type = type, cases = Dropouts_sideeffects, 
+    n = No_randomised, data = mymoredata, se = selogRRdropAE, 
+    proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 268.8989 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                           Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0294      0.0021  13.9454    0.0000    0.0252    0.0335  ***
+rcs(jakubovski_ddd, knots)jakubovski_ddd'   -0.0350      0.0040  -8.6816    0.0000   -0.0429   -0.0271  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                           Std. Dev                                      Corr
+rcs(jakubovski_ddd, knots)jakubovski_ddd     0.0099  rcs(jakubovski_ddd, knots)jakubovski_ddd
+rcs(jakubovski_ddd, knots)jakubovski_ddd'    0.0147                                        -1
+
+218 studies, 340 values, 2 fixed and 3 random-effects parameters
+   logLik        AIC        BIC  
+-308.8065   627.6131   646.7283  
+

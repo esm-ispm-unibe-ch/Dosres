@@ -1,7 +1,7 @@
 
 
 ##################################################################
-#     ANALYSIS INCLUDING DOSES BETWEEN 0.75 AND 30 MG
+#     ANALYSIS INCLUDING all dose and all drugs
 #################################################################
 
 pdf("Meta-analytic dose plots for all drugs and doses.pdf")
@@ -38,15 +38,15 @@ text=paste(length(unique(mymoredata$Study_No)),"studies comparing all drugs and 
 #linear
 doseresRR=dosresmeta(formula=logRR~hayasaka_ddd, id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata,method = "reml")
 print(summary(doseresRR))
-cat(paste("RESULT: The RR for response between doses 10 mg and 40 mg is",round(predict(doseresRR,delta=40,exp=T)[2]/predict(doseresRR,delta=10,exp=T)[2],3), "\n"))
+cat(paste("RESULT: The RR for response between doses 10 mg and 30 mg is",round(predict(doseresRR,delta=30,exp=T)[2]/predict(doseresRR,delta=10,exp=T)[2],3), "\n"))
 with(predict(doseresRR, expo = TRUE, order = TRUE), {
   plot(hayasaka_ddd, pred, log = "y", type = "l",
-       xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Linear",text))
+       xlim = c(0, 80), ylim = c(.95, 3),xlab="Dose",ylab="RR",main=c("Linear",text))
   lines(hayasaka_ddd,  ci.lb, lty = 2)
   lines(hayasaka_ddd, ci.ub, lty = 2)
   rug(hayasaka_ddd, quiet = TRUE) })
-with(mymoredata,points(hayasaka_ddd,exp(logRR)))
-
+#with(mymoredata,points(hayasaka_ddd[logRR!=0],exp(logRR[logRR!=0])))
+with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
 cat("\n-------- Splines response -----------------------------\n")
 #cubic splines
@@ -59,9 +59,9 @@ cat("\n******For the spline model we have in total",length(unique(mymoredata$Stu
   xref=min(mymoredata$hayasaka_ddd)
   with(predict(doseresRR, newdata,xref, exp = TRUE), {
     plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, log = "y", type = "l",
-         xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Splines",text))
+         xlim = c(0, 80), ylim = c(.95, 3),xlab="Dose",ylab="RR",main=c("Splines",text))
     matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
-  with(mymoredata,points(hayasaka_ddd,exp(logRR)))
+  #with(mymoredata,points(hayasaka_ddd[logRR!=0],exp(logRR[logRR!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
 ################
@@ -80,16 +80,16 @@ text=paste(length(unique(mymoredata$Study_No)),"studies comparing all drugs and 
 #linear
 doseresRR=dosresmeta(formula=logRRdrop~hayasaka_ddd, id=Study_No, type=type,cases=Dropouts_total,n=No_randomised,se=selogRRdrop,data=mymoredata )
 print(summary(doseresRR))
-cat(paste("RESULT: The RR for dropout between doses 10 mg and 40 mg is",round(predict(doseresRR,delta=40,exp=T)[2]/predict(doseresRR,delta=10,exp=T)[2],3), "\n"))
+cat(paste("RESULT: The RR for dropout between doses 10 mg and 30 mg is",round(predict(doseresRR,delta=30,exp=T)[2]/predict(doseresRR,delta=10,exp=T)[2],3), "\n"))
 
 with(predict(doseresRR, expo = TRUE, order = TRUE), {
   plot(hayasaka_ddd, pred, log = "y", type = "l",
-       xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Linear",text))
+       xlim = c(0, 80), ylim = c(.95, 3),xlab="Dose",ylab="RR",main=c("Linear",text))
   lines(hayasaka_ddd,  ci.lb, lty = 2)
   lines(hayasaka_ddd, ci.ub, lty = 2)
   rug(hayasaka_ddd, quiet = TRUE) })
-with(mymoredata,points(hayasaka_ddd,exp(logRR)))
-
+#with(mymoredata,points(hayasaka_ddd[logRR!=0],exp(logRR[logRR!=0])))
+with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
   
 cat("\n-------- Splines dropout -----------------------------\n")
@@ -102,9 +102,9 @@ cat("******For the splines model we have in total",length(unique(mymoredata$Stud
   xref=min(mymoredata$hayasaka_ddd)
   with(predict(doseresRR, newdata,xref, exp = TRUE), {
     plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, log = "y", type = "l",
-         xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Splines",text))
+         xlim = c(0, 80), ylim = c(.95, 3),xlab="Dose",ylab="RR",main=c("Splines",text))
     matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
-  with(mymoredata,points(hayasaka_ddd,exp(logRRdrop)))
+  #with(mymoredata,points(hayasaka_ddd[logRRdrop!=0],exp(logRRdrop[logRRdrop!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
 
@@ -122,17 +122,17 @@ text=paste(length(unique(mymoredata$Study_No)),"studies comparing all drugs and 
 #linear
 doseresRR=dosresmeta(formula=logRRdropAE~hayasaka_ddd, id=Study_No, type=type,cases=Dropouts_sideeffects,n=No_randomised,se=selogRRdropAE,data=mymoredata)
 print(summary(doseresRR))
-cat(paste("RESULT: The RR for AEdropout between doses 10 mg and 40 mg is",round(predict(doseresRR,delta=40,exp=T)[2]/predict(doseresRR,delta=10,exp=T)[2],3), "\n"))
+cat(paste("RESULT: The RR for AEdropout between doses 10 mg and 30 mg is",round(predict(doseresRR,delta=30,exp=T)[2]/predict(doseresRR,delta=10,exp=T)[2],3), "\n"))
 cat(paste("RESULT: The RR for AEdropout between doses 30 mg and 80 mg is",round(predict(doseresRR,delta=80,exp=T)[2]/predict(doseresRR,delta=30,exp=T)[2],3), "\n"))
 
 with(predict(doseresRR, expo = TRUE, order = TRUE), {
   plot(hayasaka_ddd, pred, log = "y", type = "l",
-       xlim = c(0, 80), ylim = c(.5, 5),xlab="Dose",ylab="RR",main=c("Linear",text))
+       xlim = c(0, 80), ylim = c(.95, 3),xlab="Dose",ylab="RR",main=c("Linear",text))
   lines(hayasaka_ddd,  ci.lb, lty = 2)
   lines(hayasaka_ddd, ci.ub, lty = 2)
   rug(hayasaka_ddd, quiet = TRUE) })
-with(mymoredata,points(hayasaka_ddd,exp(logRRdropAE)))
-
+#with(mymoredata,points(hayasaka_ddd[logRRdropAE!=0],exp(logRRdropAE[logRRdropAE!=0])))
+with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
 cat("\n-------- Splines dropout AE -----------------------------\n")
 #cubic splines
@@ -145,9 +145,9 @@ cat("\n******For the splines model we have in total",length(unique(mymoredata$St
   xref=min(mymoredata$hayasaka_ddd)
   with(predict(doseresRR, newdata,xref, exp = TRUE), {
     plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, log = "y", type = "l",
-         xlim = c(0, 80), ylim = c(.5, 5),xlab="Dose",ylab="RR",main=c("Splines",text))
+         xlim = c(0, 80), ylim = c(.95, 3),xlab="Dose",ylab="RR",main=c("Splines",text))
     matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
-  with(mymoredata,points(hayasaka_ddd,exp(logRRdropAE)))
+  #with(mymoredata,points(hayasaka_ddd[logRRdropAE!=0],exp(logRRdropAE[logRRdropAE!=0])))
   with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
 dev.off()

@@ -35,13 +35,14 @@ length(exludearm)
 length(DOSEsameDrug$Drug)
 
 DOSEsameDrug=DOSEsameDrug[exludearm==F,]
-with(DOSEsameDrug,table(Study_No,Drug))
+#with(DOSEsameDrug,table(Study_No,Drug))
 
 #we need to correct study 128 By hand
 r=DOSEsameDrug$Responders[DOSEsameDrug$Study_No==128]
 n=DOSEsameDrug$No_randomised[DOSEsameDrug$Study_No==128]
 DOSEsameDrug$logRR[DOSEsameDrug$Study_No==128]=c(0,metabin(r[2],n[2],r[1],n[1],"RR")$TE)
 DOSEsameDrug$selogRR[DOSEsameDrug$Study_No==128]=c(NA,metabin(r[2],n[2],r[1],n[1],"RR")$seTE)
+
 
 #split study 381 that has Placebo, Paroxetinex2, Citalopram x2
 
@@ -71,7 +72,7 @@ apply(table(DOSEsameDrug$Drug,DOSEsameDrug$Study_No)>0,1,sum)
 dis=names(apply(table(DOSEsameDrug$Drug,DOSEsameDrug$Study_No)>0,1,sum))#names of drugs with multiple doses per arm
 dis=dis[dis!="placebo"]
 
-pdf("Per study dose response.pdf")
+pdf("Per study dose response.pdf") 
 for(i in 1:length(dis))
   {#iterate in drugs
   cat("***************************","\n")
@@ -89,42 +90,45 @@ for(i in 1:length(dis))
       text=paste("Study",studis[j],"with",unique(mylittledata$Drug)[1],"vs",unique(mylittledata$Drug)[-1])
 
         #linear
-        doseresRR=dosresmeta(formula=logRR~hayasaka_ddd, id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mylittledata)
+        doseresRR=dosresmeta(formula=logRR~Dose_delivered_mean, id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mylittledata)
         summary(doseresRR)
         predict(doseresRR,delta=20,exp=T)
         with(predict(doseresRR, expo = TRUE, order = TRUE), {
-        plot(hayasaka_ddd, pred, log = "y", type = "l",
-            xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Linear",text))
-       lines(hayasaka_ddd,  ci.lb, lty = 2)
-       lines(hayasaka_ddd, ci.ub, lty = 2)
-       rug(hayasaka_ddd, quiet = TRUE) })
-        with(mylittledata,points(hayasaka_ddd,exp(logRR)))
+        plot(Dose_delivered_mean, pred, log = "y", type = "l",
+            xlim = c(0, max(Dose_delivered_mean)), ylim = c(.75, 2.5),xlab="Actual mean dose",ylab="RR",main=c("Linear",text))
+       lines(Dose_delivered_mean,  ci.lb, lty = 2)
+       lines(Dose_delivered_mean, ci.ub, lty = 2)
+       rug(Dose_delivered_mean, quiet = TRUE) })
+        with(mylittledata,points(Dose_delivered_mean,exp(logRR)))
      
         #quadratic
-        doseresRR=dosresmeta(formula=logRR~hayasaka_ddd+I(hayasaka_ddd^2), id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mylittledata)
+        doseresRR=dosresmeta(formula=logRR~Dose_delivered_mean+I(Dose_delivered_mean^2), id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mylittledata)
         summary(doseresRR)
         predict(doseresRR,exp=T)
         with(predict(doseresRR, expo = TRUE, order = TRUE), {
-        plot(hayasaka_ddd, pred, log = "y", type = "l",
-            xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Quadratic",text))
-        lines(hayasaka_ddd,  ci.lb, lty = 2)
-        lines(hayasaka_ddd, ci.ub, lty = 2)
-        rug(hayasaka_ddd, quiet = TRUE)})
-        with(mylittledata,points(hayasaka_ddd,exp(logRR)))
+        plot(Dose_delivered_mean, pred, log = "y", type = "l",
+            xlim = c(0, max(Dose_delivered_mean)), ylim = c(.75, 2.5),xlab="Actual mean dose",ylab="RR",main=c("Quadratic",text))
+        lines(Dose_delivered_mean,  ci.lb, lty = 2)
+        lines(Dose_delivered_mean, ci.ub, lty = 2)
+        rug(Dose_delivered_mean, quiet = TRUE)})
+        with(mylittledata,points(Dose_delivered_mean,exp(logRR)))
      
     #cubic splines
-      knots=c(10,20,40)
+      maxdose=max(mylittledata$Dose_delivered_mean)
+      knot1=maxdose/5+(maxdose-maxdose/5)/3
+      knot2=maxdose/5+2*(maxdose-maxdose/5)/3
+      knots=c(maxdose/5,knot1,knot2)
       tryCatch({#start tryCatch to avoid stopping with stupid errors
-      doseresRR=dosresmeta(formula=logRR~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mylittledata)
+      doseresRR=dosresmeta(formula=logRR~rcs(Dose_delivered_mean,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mylittledata)
       summary(doseresRR)
-      newdata=data.frame(hayasaka_ddd=seq(0,80,1))
+      newdata=data.frame(Dose_delivered_mean=seq(0,maxdose,1))
       xref=0
       with(predict(doseresRR, newdata,xref, exp = TRUE), {
-      plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, log = "y", type = "l",
-           xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Splines",text))
-      matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
-      with(mylittledata,points(hayasaka_ddd,exp(logRR)))
-      with(mylittledata,rug(hayasaka_ddd, quiet = TRUE))},error=function(e){cat("ERROR in study",studis[j],":",conditionMessage(e), "\n")})
+      plot(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),pred, log = "y", type = "l",
+           xlim = c(0, maxdose), ylim = c(.75, 2.5),xlab="Actual mean dose",ylab="RR",main=c("Splines",text))
+      matlines(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
+      with(mylittledata,points(Dose_delivered_mean,exp(logRR)))
+      with(mylittledata,rug(Dose_delivered_mean, quiet = TRUE))},error=function(e){cat("ERROR in study",studis[j],":",conditionMessage(e), "\n")})
       
       }#end else
   }#END iterate in studies within drugs
@@ -136,7 +140,6 @@ dev.off()
 ##################################################################################
 ###       Meta-analysis of each drug                                             ##
 ##################################################################################
-
 
 pdf("Per drug dose response.pdf")
 for(i in 1:length(dis))
@@ -157,16 +160,17 @@ for(i in 1:length(dis))
     text=paste(length(studis),"studies with",unique(mymoredata$Drug)[1],"vs",unique(mymoredata$Drug)[-1])
     
     #linear
-    doseresRR=dosresmeta(formula=logRR~hayasaka_ddd, id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
+    doseresRR=dosresmeta(formula=logRR~Dose_delivered_mean, id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
     summary(doseresRR)
     predict(doseresRR,delta=20,exp=T)
     with(predict(doseresRR, expo = TRUE, order = TRUE), {
-      plot(hayasaka_ddd, pred, log = "y", type = "l",
-           xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Linear",text))
-      lines(hayasaka_ddd,  ci.lb, lty = 2)
-      lines(hayasaka_ddd, ci.ub, lty = 2)
-      rug(hayasaka_ddd, quiet = TRUE) })
-    with(mymoredata,points(hayasaka_ddd,exp(logRR)))
+      plot(Dose_delivered_mean, pred, log = "y", type = "l",
+           xlim = c(0, max(Dose_delivered_mean)), ylim = c(.75, 2.5),xlab="Actual mean dose",ylab="RR",main=c("Linear",text))
+      lines(Dose_delivered_mean,  ci.lb, lty = 2)
+      lines(Dose_delivered_mean, ci.ub, lty = 2)
+      rug(Dose_delivered_mean, quiet = TRUE) })
+    #with(mymoredata,points(Dose_delivered_mean,exp(logRR)))
+    with(mymoredata,rug(Dose_delivered_mean, quiet = TRUE))
     
     #quadratic
     #because quadratic requires ar least three observations per study, we exclude studies with less data
@@ -174,30 +178,37 @@ for(i in 1:length(dis))
     out=names(a[a<3])
     if(length(out)>0)(cat("from the quadratic model I excluded",length(out),"studies because they had 2 dose levels"))
     mymoreQdata=mymoredata[is.na(match(mymoredata$Study_No,out)),]
-    tryCatch({ doseresRR=dosresmeta(formula=logRR~hayasaka_ddd+I(hayasaka_ddd^2), id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoreQdata)
+    tryCatch({ doseresRR=dosresmeta(formula=logRR~Dose_delivered_mean+I(Dose_delivered_mean^2), id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoreQdata)
     summary(doseresRR)
     predict(doseresRR,exp=T)
     with(predict(doseresRR, expo = TRUE, order = TRUE), {
-      plot(hayasaka_ddd, pred, log = "y", type = "l",
-           xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Quadratic",text))
-      lines(hayasaka_ddd,  ci.lb, lty = 2)
-      lines(hayasaka_ddd, ci.ub, lty = 2)
-      rug(hayasaka_ddd, quiet = TRUE)})
-    with(mymoreQdata,points(hayasaka_ddd,exp(logRR)))},error=function(e){cat("ERROR in Quadratic",":",conditionMessage(e), "\n")})
+      plot(Dose_delivered_mean, pred, log = "y", type = "l",
+           xlim = c(0,max(Dose_delivered_mean)), ylim = c(.75, 2.5),xlab="Actual mean dose",ylab="RR",main=c("Quadratic",text))
+      lines(Dose_delivered_mean,  ci.lb, lty = 2)
+      lines(Dose_delivered_mean, ci.ub, lty = 2)
+      rug(Dose_delivered_mean, quiet = TRUE)})
+    #with(mymoreQdata,points(Dose_delivered_mean,exp(logRR)))
+    with(mymoreQdata,rug(Dose_delivered_mean, quiet = TRUE))
+    },error=function(e){cat("ERROR in Quadratic",":",conditionMessage(e), "\n")})
     
     #cubic splines
-    knots=c(10,20,40)
+    maxdose=max(mymoredata$Dose_delivered_mean)
+    mindose=min(mymoredata$Dose_delivered_mean)
+    knot0=max(mindose+maxdose/8,maxdose/5)
+    knot1=knot0+(maxdose-knot0)/3
+    knot2=knot0+2*(maxdose-knot0)/3
+    knots=c(knot0,knot1,knot2)
     tryCatch({#start tryCatch to avoid stopping with stupid errors
-      doseresRR=dosresmeta(formula=logRR~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
+      doseresRR=dosresmeta(formula=logRR~rcs(Dose_delivered_mean,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
       summary(doseresRR)
-      newdata=data.frame(hayasaka_ddd=seq(0,80,1))
-      xref=min(mymoredata$hayasaka_ddd)
+      newdata=data.frame(Dose_delivered_mean=seq(0,maxdose,1))
+      xref=min(mymoredata$Dose_delivered_mean)
       with(predict(doseresRR, newdata,xref, exp = TRUE), {
-        plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, log = "y", type = "l",
-             xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Splines",text))
-        matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
-      with(mymoredata,points(hayasaka_ddd,exp(logRR)))
-      with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))},error=function(e){cat("ERROR in Spline",":",conditionMessage(e), "\n")})
+        plot(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),pred, log = "y", type = "l",
+             xlim = c(0, maxdose), ylim = c(.75, 2.5),xlab="Actual mean dose",ylab="RR",main=c("Splines",text))
+        matlines(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
+      #with(mymoredata,points(Dose_delivered_mean,exp(logRR)))
+      with(mymoredata,rug(Dose_delivered_mean, quiet = TRUE))},error=function(e){cat("ERROR in Spline",":",conditionMessage(e), "\n")})
   }#end else
   
 }#END iterate in drugs
@@ -224,16 +235,16 @@ cat(paste("There are", length(unique(mymoredata$Study_No)), "studies", "\n"))
   text=paste(length(unique(mymoredata$Study_No)),"studies comparing all drugs and all doses for response")
   
       #linear
-      doseresRR=dosresmeta(formula=logRR~hayasaka_ddd, id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
+      doseresRR=dosresmeta(formula=logRR~Dose_delivered_mean, id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
       summary(doseresRR)
       predict(doseresRR,delta=20,exp=T)
       with(predict(doseresRR, expo = TRUE, order = TRUE), {
-        plot(hayasaka_ddd, pred, log = "y", type = "l",
+        plot(Dose_delivered_mean, pred, log = "y", type = "l",
              xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Linear",text))
-        lines(hayasaka_ddd,  ci.lb, lty = 2)
-        lines(hayasaka_ddd, ci.ub, lty = 2)
-        rug(hayasaka_ddd, quiet = TRUE) })
-      with(mymoredata,points(hayasaka_ddd,exp(logRR)))
+        lines(Dose_delivered_mean,  ci.lb, lty = 2)
+        lines(Dose_delivered_mean, ci.ub, lty = 2)
+        rug(Dose_delivered_mean, quiet = TRUE) })
+      with(mymoredata,points(Dose_delivered_mean,exp(logRR)))
       
       #quadratic
       #because quadratic requires ar least three observations per study, we exclude studies with less data
@@ -241,30 +252,30 @@ cat(paste("There are", length(unique(mymoredata$Study_No)), "studies", "\n"))
       out=names(a[a<3])
       if(length(out)>0)(cat("from the quadratic model I excluded",length(out),"studies because they had 2 dose levels"))
       mymoreQdata=mymoredata[is.na(match(mymoredata$Study_No,out)),]
-      tryCatch({ doseresRR=dosresmeta(formula=logRR~hayasaka_ddd+I(hayasaka_ddd^2), id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoreQdata)
+      tryCatch({ doseresRR=dosresmeta(formula=logRR~Dose_delivered_mean+I(Dose_delivered_mean^2), id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoreQdata)
       summary(doseresRR)
       predict(doseresRR,exp=T)
       with(predict(doseresRR, expo = TRUE, order = TRUE), {
-        plot(hayasaka_ddd, pred, log = "y", type = "l",
+        plot(Dose_delivered_mean, pred, log = "y", type = "l",
              xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Quadratic",text))
-        lines(hayasaka_ddd,  ci.lb, lty = 2)
-        lines(hayasaka_ddd, ci.ub, lty = 2)
-        rug(hayasaka_ddd, quiet = TRUE)})
-      with(mymoreQdata,points(hayasaka_ddd,exp(logRR)))},error=function(e){cat("ERROR in Quadratic",":",conditionMessage(e), "\n")})
+        lines(Dose_delivered_mean,  ci.lb, lty = 2)
+        lines(Dose_delivered_mean, ci.ub, lty = 2)
+        rug(Dose_delivered_mean, quiet = TRUE)})
+      with(mymoreQdata,points(Dose_delivered_mean,exp(logRR)))},error=function(e){cat("ERROR in Quadratic",":",conditionMessage(e), "\n")})
       
       #cubic splines
       knots=c(10,20,40)
       tryCatch({#start tryCatch to avoid stopping with stupid errors
-        doseresRR=dosresmeta(formula=logRR~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
+        doseresRR=dosresmeta(formula=logRR~rcs(Dose_delivered_mean,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
         summary(doseresRR)
-        newdata=data.frame(hayasaka_ddd=seq(0,80,1))
-        xref=min(mymoredata$hayasaka_ddd)
+        newdata=data.frame(Dose_delivered_mean=seq(0,80,1))
+        xref=min(mymoredata$Dose_delivered_mean)
         with(predict(doseresRR, newdata,xref, exp = TRUE), {
-          plot(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),pred, log = "y", type = "l",
+          plot(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),pred, log = "y", type = "l",
                xlim = c(0, 80), ylim = c(.75, 2.5),xlab="Dose",ylab="RR",main=c("Splines",text))
-          matlines(get("rcs(hayasaka_ddd, knots)hayasaka_ddd"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
-        with(mymoredata,points(hayasaka_ddd,exp(logRR)))
-        with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))},error=function(e){cat("ERROR in Spline",":",conditionMessage(e), "\n")})
+          matlines(get("rcs(Dose_delivered_mean, knots)Dose_delivered_mean"),cbind(ci.ub,ci.lb),col=1,lty="dashed")})
+        with(mymoredata,points(Dose_delivered_mean,exp(logRR)))
+        with(mymoredata,rug(Dose_delivered_mean, quiet = TRUE))},error=function(e){cat("ERROR in Spline",":",conditionMessage(e), "\n")})
 
 
 dev.off()   

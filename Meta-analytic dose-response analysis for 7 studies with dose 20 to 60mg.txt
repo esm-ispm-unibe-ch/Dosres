@@ -14,25 +14,25 @@ Two-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 0.1964 (df = 1), p-value = 0.6577
+Chi2 model: X2 = 0.3596 (df = 1), p-value = 0.5487
 
 Fixed-effects coefficients
              Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub   
-(Intercept)   -0.0017      0.0039  -0.4431    0.6577   -0.0095    0.0060   
+(Intercept)   -0.0022      0.0036  -0.5997    0.5487   -0.0093    0.0049   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
   Std. Dev
-    0.0046
+    0.0024
 
 Univariate Cochran Q-test for residual heterogeneity:
-Q = 11.4964 (df = 11), p-value = 0.4027
-I-square statistic = 4.3%
+Q = 9.2643 (df = 11), p-value = 0.5975
+I-square statistic = 0.0%
 
 12 studies, 12 values, 1 fixed and 1 random-effects parameters
   logLik       AIC       BIC  
- 28.2376  -52.4753  -51.6795  
+ 29.1263  -54.2526  -53.4568  
 
 
  ************Dosres within study with ID 7 ****************
@@ -98,27 +98,6 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
  0.9655   0.0689  -1.9311  
 
 
- ************Dosres within study with ID 55 ****************
-Call:  dosresmeta(formula = logRR ~ hayasaka_ddd, id = Study_No, type = type, 
-    cases = Responders, n = No_randomised, data = mymoredata1, 
-    se = selogRR, method = "reml")
-
-One-stage fixed-effects meta-analysis
-Covariance approximation: Greenland & Longnecker
-
-Chi2 model: X2 = 3.8586 (df = 1), p-value = 0.0495
-
-Fixed-effects coefficients
-              Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub   
-hayasaka_ddd    0.0243      0.0124  1.9643    0.0495    0.0001    0.0486  *
----
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
-
-1 study 1 values, 1 fixed and 0 random-effects parameters
- logLik      AIC      BIC  
- 0.6244   0.7512  -1.2488  
-
-
  ************Dosres within study with ID 60 ****************
 Call:  dosresmeta(formula = logRR ~ hayasaka_ddd, id = Study_No, type = type, 
     cases = Responders, n = No_randomised, data = mymoredata1, 
@@ -180,4 +159,25 @@ Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’
 1 study 1 values, 1 fixed and 0 random-effects parameters
  logLik      AIC      BIC  
  0.8321   0.3357  -1.6643  
+
+
+ ************Dosres within study with ID 63 ****************
+Call:  dosresmeta(formula = logRR ~ hayasaka_ddd, id = Study_No, type = type, 
+    cases = Responders, n = No_randomised, data = mymoredata1, 
+    se = selogRR, method = "reml")
+
+One-stage fixed-effects meta-analysis
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 0.3170 (df = 1), p-value = 0.5734
+
+Fixed-effects coefficients
+              Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub   
+hayasaka_ddd   -0.0068      0.0121  -0.5630    0.5734   -0.0305    0.0169   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+1 study 1 values, 1 fixed and 0 random-effects parameters
+ logLik      AIC      BIC  
+ 1.2906  -0.5812  -2.5812  
 

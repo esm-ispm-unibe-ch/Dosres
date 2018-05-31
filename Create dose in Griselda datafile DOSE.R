@@ -82,13 +82,89 @@ DOSE$ddd=myreplace(DOSE$ddd,DOSE$Dose_delivered_mean*0.20,DOSE$Drug=="venlafaxin
 DOSE$ddd=myreplace(DOSE$ddd,DOSE$Dose_delivered_mean*2,DOSE$Drug=="vilazodone")
 DOSE$ddd=myreplace(DOSE$ddd,DOSE$Dose_delivered_mean*2,DOSE$Drug=="vortioxetine")
 
+DOSE$jakubovski_ddd=DOSE$Dose_delivered_mean
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.8,DOSE$Drug=="agomelatine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.27,DOSE$Drug=="amitriptyline")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.067,DOSE$Drug=="bupropion")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.06,DOSE$Drug=="citalopram")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.20,DOSE$Drug=="clomipramine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.40,DOSE$Drug=="desvenlafaxine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.33,DOSE$Drug=="duloxetine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*1.2,DOSE$Drug=="escitalopram")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*1,DOSE$Drug=="fluoxetine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.20,DOSE$Drug=="fluvoxamine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.67,DOSE$Drug=="levomilnacipran")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.20,DOSE$Drug=="milnacipran")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.67,DOSE$Drug=="mirtazapine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.05,DOSE$Drug=="nefazodone")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*1,DOSE$Drug=="paroxetine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*2.5,DOSE$Drug=="reboxetine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.17,DOSE$Drug=="sertraline")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.067,DOSE$Drug=="trazodone")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*0.20,DOSE$Drug=="venlafaxine")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*2,DOSE$Drug=="vilazodone")
+DOSE$jakubovski_ddd=myreplace(DOSE$jakubovski_ddd,DOSE$Dose_delivered_mean*2,DOSE$Drug=="vortioxetine")
 
 
-### KEEP ONLY USEFUL VARIABLES AND ORDER THE DATABASE SO THAT WE HAVE WITHIN EACH STUDY PLACEBO OR LEAST DOSE FIRST
-DOSE=DOSE[,c("Study_No","No of arms","Study_year","Drug","Dose_range","No_randomised","Responders","Dropouts_total","Dropouts_sideeffects","N compimputed","Mean","SD","hayasaka_ddd","ddd", "bollini_ddd")]
+
+### KEEP ONLY USEFUL VARIABLES and DRUGS WE WANT
+out=c("amitriptyline", "clomipramine", "trazodone", "nefazodone")
+DOSE=DOSE[is.na(match(DOSE$Drug,out)),c("Study_No","No of arms","Study_year","Drug","Dose_range","No_randomised","Responders","Dropouts_total","Dropouts_sideeffects","N compimputed","Mean","SD","hayasaka_ddd","ddd", "jakubovski_ddd","Dose_delivered_mean")]
+
+##ORDER THE DATABASE SO THAT WE HAVE WITHIN EACH STUDY PLACEBO OR LEAST DOSE FIRST
 DOSE=DOSE[with(DOSE,order(Study_No,hayasaka_ddd)),]
+
 #exclude single-arm studies
 DOSE=exludesinglearmsdata.fun(DOSE,Study_No)
 
 #CREATE STUDY TYPE
 DOSE$type="cc"
+
+#COPY THE DATABASE DOSE TO THE DOSEj to be used for the jakubovski_ddd analysis
+DOSEj=DOSE
+
+# Create two other datasets according to the hayasaka_ddd dose 
+DOSEless30=DOSE[with(DOSE,c(hayasaka_ddd<30 & hayasaka_ddd>0)),] #doses only very low, below 30
+DOSEless30=exludesinglearmsdata.fun(DOSEless30,Study_No)
+DOSEtheur=DOSE[with(DOSE,c(hayasaka_ddd>=20  & hayasaka_ddd<=80)),]#doses between 20 and 80
+DOSEtheur=exludesinglearmsdata.fun(DOSEtheur,Study_No)
+
+## Create two other datasets according to SSRIs vs SNRIs
+
+SSRIs=c("citalopram", "escitalopram", "fluoxetine", "fluvoxamine","paroxetine", "sertraline","placebo")
+SNRIs=c("desvenlafaxine", "duloxetine", "levomilnacipran","milnacipran", "venlafaxine","placebo")
+
+DOSESSRIs=DOSE[!is.na(match(DOSE$Drug,SSRIs)),]
+DOSESSRIs=exludesinglearmsdata.fun(DOSESSRIs,Study_No)
+DOSESNRIs=DOSE[!is.na(match(DOSE$Drug,SNRIs)),]
+DOSESNRIs=exludesinglearmsdata.fun(DOSESNRIs,Study_No)
+
+################################################################################################
+#  Produce per arm LOG RR for RESPONSE, DROPOUT AND DROPOUT DUE TO AE
+###############################################################################################
+
+DOSE=createdatasetdoseresponse.fun(DOSE,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
+DOSE=createdatasetdoseresponse.fun(DOSE,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
+DOSE=createdatasetdoseresponse.fun(DOSE,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
+
+DOSEless30=createdatasetdoseresponse.fun(DOSEless30,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
+DOSEless30=createdatasetdoseresponse.fun(DOSEless30,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
+DOSEless30=createdatasetdoseresponse.fun(DOSEless30,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
+
+DOSEtheur=createdatasetdoseresponse.fun(DOSEtheur,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
+DOSEtheur=createdatasetdoseresponse.fun(DOSEtheur,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
+DOSEtheur=createdatasetdoseresponse.fun(DOSEtheur,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
+
+DOSEj=createdatasetdoseresponse.fun(DOSEj,Responders,No_randomised,Study_No,jakubovski_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
+DOSEj=createdatasetdoseresponse.fun(DOSEj,Dropouts_total,No_randomised,Study_No,jakubovski_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
+DOSEj=createdatasetdoseresponse.fun(DOSEj,Dropouts_sideeffects,No_randomised,Study_No,jakubovski_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
+
+
+DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
+DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
+DOSESSRIs=createdatasetdoseresponse.fun(DOSESSRIs,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
+
+DOSESNRIs=createdatasetdoseresponse.fun(DOSESNRIs,Responders,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRR",nameofselogRR="selogRR")
+DOSESNRIs=createdatasetdoseresponse.fun(DOSESNRIs,Dropouts_total,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdrop",nameofselogRR="selogRRdrop")
+DOSESNRIs=createdatasetdoseresponse.fun(DOSESNRIs,Dropouts_sideeffects,No_randomised,Study_No,hayasaka_ddd,nameoflogRR="logRRdropAE",nameofselogRR="selogRRdropAE")
+
