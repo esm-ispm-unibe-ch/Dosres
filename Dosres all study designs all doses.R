@@ -1,5 +1,5 @@
 
-
+write.csv(DOSE, "DOSEmainanalysis.csv")
 ##################################################################
 #     ANALYSIS INCLUDING all dose and all drugs
 #################################################################
@@ -18,6 +18,7 @@ DOSE=cleandosresdata.fun(DOSE,Study_No,logRR,Responders,No_randomised,hayasaka_d
 DOSE=cleandosresdata.fun(DOSE,Study_No,logRRdrop,Dropouts_total,No_randomised,hayasaka_ddd,"excdrop")
 DOSE=cleandosresdata.fun(DOSE,Study_No,logRRdropAE,Dropouts_sideeffects,No_randomised,hayasaka_ddd,"excdropAE")
 ##REPORTING
+write.csv(DOSE, "DOSEmainanalysis.csv")
 cat("\n", paste("There are", length(unique(DOSE$Study_No)), "studies comparing all doses .", "\n"))
 cat("which include the drugs:", unique(DOSE$Drug), "\n")
 cat("\nThe knots I used in the splines are at doses 10,20,50 mg")
