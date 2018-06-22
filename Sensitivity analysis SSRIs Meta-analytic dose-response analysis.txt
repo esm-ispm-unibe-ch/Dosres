@@ -8,8 +8,8 @@ From all analyses I excluded studies with zero events and studies with less than
  
     Active drugs as well as Placebo are included.
 
- There are 136 studies comparing all doses . 
-which include the drugs: placebo fluoxetine paroxetine sertraline escitalopram citalopram fluvoxamine 
+ There are 78 studies comparing all doses . 
+which include the drugs: placebo fluoxetine paroxetine citalopram escitalopram fluvoxamine sertraline 
 
 The knots I used in the splines are at doses 10,20,50 mg
 -----------------------------------------------
@@ -17,7 +17,7 @@ The knots I used in the splines are at doses 10,20,50 mg
 -------- RESPONSE -----------------------------
 
 -------- Linear response -----------------------------
-******For the linear model there are 122 studies 
+******For the linear model there are 66 studies 
 Call:  dosresmeta(formula = logRR ~ hayasaka_ddd, id = Study_No, type = type, 
     cases = Responders, n = No_randomised, data = mymoredata, 
     se = selogRR, method = "reml")
@@ -26,31 +26,31 @@ Two-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 101.5042 (df = 1), p-value = 0.0000
+Chi2 model: X2 = 32.5182 (df = 1), p-value = 0.0000
 
 Fixed-effects coefficients
-             Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-(Intercept)    0.0061      0.0006  10.0749    0.0000    0.0049    0.0073  ***
+             Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+(Intercept)    0.0067      0.0012  5.7025    0.0000    0.0044    0.0090  ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
   Std. Dev
-    0.0036
+    0.0065
 
 Univariate Cochran Q-test for residual heterogeneity:
-Q = 232.2672 (df = 121), p-value = 0.0000
-I-square statistic = 47.9%
+Q = 166.8594 (df = 65), p-value = 0.0000
+I-square statistic = 61.0%
 
-122 studies, 122 values, 1 fixed and 1 random-effects parameters
+66 studies, 66 values, 1 fixed and 1 random-effects parameters
    logLik        AIC        BIC  
- 359.7259  -715.4518  -709.8602  
+ 188.1117  -372.2234  -367.8746  
 
-RESULT: The RR for response from dose 10 to dose 30  is 1.13 
+RESULT: The RR for response from dose 10 to dose 30  is 1.143 
 
 -------- Splines response -----------------------------
 
-******For the spline model we have in total 122 studiesCall:  dosresmeta(formula = logRR ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+******For the spline model we have in total 66 studiesCall:  dosresmeta(formula = logRR ~ rcs(hayasaka_ddd, knots), id = Study_No, 
     type = type, cases = Responders, n = No_randomised, data = mymoredata, 
     se = selogRR, proc = "1stage")
 
@@ -58,23 +58,23 @@ One-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 118.6116 (df = 2), p-value = 0.0000
+Chi2 model: X2 = 52.1106 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
                                        Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0111      0.0011   9.6585    0.0000    0.0088    0.0133  ***
-rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0183      0.0031  -5.8546    0.0000   -0.0244   -0.0122  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0116      0.0016   7.2071    0.0000    0.0084    0.0148  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0216      0.0038  -5.7222    0.0000   -0.0290   -0.0142  ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
                                        Std. Dev                                  Corr
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0055  rcs(hayasaka_ddd, knots)hayasaka_ddd
-rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0070                                    -1
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0078  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0101                                    -1
 
-122 studies, 151 values, 2 fixed and 3 random-effects parameters
-  logLik       AIC       BIC  
- 11.3476  -12.6952    2.3245  
+66 studies, 92 values, 2 fixed and 3 random-effects parameters
+ logLik      AIC      BIC  
+ 3.3037   3.3926  15.8916  
 
 
 -----------------------------------------------
@@ -83,7 +83,7 @@ rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0070                                 
 
 -------- Linear dropout -----------------------------
 
-******For the linear model there are 117 studies 
+******For the linear model there are 67 studies 
 Call:  dosresmeta(formula = logRRdrop ~ hayasaka_ddd, id = Study_No, 
     type = type, cases = Dropouts_total, n = No_randomised, data = mymoredata, 
     se = selogRRdrop)
@@ -92,11 +92,11 @@ Two-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 0.2178 (df = 1), p-value = 0.6407
+Chi2 model: X2 = 1.3542 (df = 1), p-value = 0.2445
 
 Fixed-effects coefficients
              Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub   
-(Intercept)    0.0003      0.0007  0.4667    0.6407   -0.0011    0.0018   
+(Intercept)    0.0012      0.0010  1.1637    0.2445   -0.0008    0.0032   
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
@@ -105,17 +105,17 @@ Between-study random-effects (co)variance components
     0.0038
 
 Univariate Cochran Q-test for residual heterogeneity:
-Q = 181.3356 (df = 116), p-value = 0.0001
-I-square statistic = 36.0%
+Q = 103.6187 (df = 66), p-value = 0.0021
+I-square statistic = 36.3%
 
-117 studies, 117 values, 1 fixed and 1 random-effects parameters
+67 studies, 67 values, 1 fixed and 1 random-effects parameters
    logLik        AIC        BIC  
- 321.1726  -638.3451  -632.8379  
+ 176.4175  -348.8349  -344.4556  
 
-RESULT: The RR for dropout from dose 10 to dose 30  is 1.007 
+RESULT: The RR for dropout from dose 10 to dose 30  is 1.024 
 
 -------- Splines dropout -----------------------------
-******For the splines model we have in total 117 studiesCall:  dosresmeta(formula = logRRdrop ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+******For the splines model we have in total 67 studiesCall:  dosresmeta(formula = logRRdrop ~ rcs(hayasaka_ddd, knots), id = Study_No, 
     type = type, cases = Dropouts_total, n = No_randomised, data = mymoredata, 
     se = selogRRdrop, proc = "1stage")
 
@@ -123,23 +123,23 @@ One-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 8.9383 (df = 2), p-value = 0.0115
+Chi2 model: X2 = 18.9927 (df = 2), p-value = 0.0001
 
 Fixed-effects coefficients
                                        Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub    
-rcs(hayasaka_ddd, knots)hayasaka_ddd    -0.0025      0.0014  -1.8157    0.0694   -0.0053    0.0002   .
-rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0097      0.0035   2.7481    0.0060    0.0028    0.0166  **
+rcs(hayasaka_ddd, knots)hayasaka_ddd    -0.0027      0.0018  -1.4398    0.1499   -0.0063    0.0010    
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0123      0.0039   3.1271    0.0018    0.0046    0.0201  **
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
                                        Std. Dev                                  Corr
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0055  rcs(hayasaka_ddd, knots)hayasaka_ddd
-rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0058                                    -1
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0067  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0104                                    -1
 
-117 studies, 152 values, 2 fixed and 3 random-effects parameters
+67 studies, 99 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
--34.2031   78.4063   93.4595  
+-25.3693   60.7387   73.6122  
 
 
 -----------------------------------------------
@@ -147,7 +147,7 @@ rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0058                                 
 -------- DROPOUT DUE TO AE --------------------
 
 -------- Linear dropout AE -----------------------------
-**** For the linear model 102 studies 
+**** For the linear model 57 studies 
 Call:  dosresmeta(formula = logRRdropAE ~ hayasaka_ddd, id = Study_No, 
     type = type, cases = Dropouts_sideeffects, n = No_randomised, 
     data = mymoredata, se = selogRRdropAE)
@@ -156,32 +156,32 @@ Two-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 163.3843 (df = 1), p-value = 0.0000
+Chi2 model: X2 = 97.6213 (df = 1), p-value = 0.0000
 
 Fixed-effects coefficients
-             Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-(Intercept)    0.0179      0.0014  12.7822    0.0000    0.0152    0.0207  ***
+             Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+(Intercept)    0.0180      0.0018  9.8804    0.0000    0.0145    0.0216  ***
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
   Std. Dev
-    0.0020
+    0.0000
 
 Univariate Cochran Q-test for residual heterogeneity:
-Q = 95.9842 (df = 101), p-value = 0.6224
+Q = 43.3955 (df = 56), p-value = 0.8907
 I-square statistic = 0.0%
 
-102 studies, 102 values, 1 fixed and 1 random-effects parameters
+57 studies, 57 values, 1 fixed and 1 random-effects parameters
    logLik        AIC        BIC  
- 225.9437  -447.8873  -442.6571  
+ 128.5857  -253.1713  -249.1206  
 
-RESULT: The RR for AEdropout from dose 10 to dose 30  is 1.431 
-RESULT: The RR for AEdropout from dose 30 to dose 80  is 2.45 
+RESULT: The RR for AEdropout from dose 10 to dose 30  is 1.434 
+RESULT: The RR for AEdropout from dose 30 to dose 80  is 2.464 
 
 -------- Splines dropout AE -----------------------------
 
-******For the splines model we have in total 102 studies
+******For the splines model we have in total 57 studies
 Call:  dosresmeta(formula = logRRdropAE ~ rcs(hayasaka_ddd, knots), 
     id = Study_No, type = type, cases = Dropouts_sideeffects, 
     n = No_randomised, data = mymoredata, se = selogRRdropAE, 
@@ -191,21 +191,21 @@ One-stage random-effects meta-analysis
 Estimation method: REML
 Covariance approximation: Greenland & Longnecker
 
-Chi2 model: X2 = 146.1987 (df = 2), p-value = 0.0000
+Chi2 model: X2 = 78.0008 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
                                        Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0223      0.0036   6.1304    0.0000    0.0152    0.0294  ***
-rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0135      0.0102  -1.3192    0.1871   -0.0336    0.0066     
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0206      0.0044   4.7297    0.0000    0.0121    0.0292  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0080      0.0114  -0.6992    0.4845   -0.0304    0.0144     
 ---
 Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
 
 Between-study random-effects (co)variance components
                                        Std. Dev                                  Corr
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0114  rcs(hayasaka_ddd, knots)hayasaka_ddd
-rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0330                                    -1
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0111  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0305                                    -1
 
-102 studies, 131 values, 2 fixed and 3 random-effects parameters
-   logLik        AIC        BIC  
--118.4075   246.8149   261.1140  
+57 studies, 83 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-72.5741  155.1482  167.1204  
 

@@ -19,16 +19,17 @@ source("Functions needed in the dose-response analysis.R")
             GRISELDAdose<-as.data.frame(GRISELDAdose)
             #delete studies that have missing dose 
             GRISELDAdose=GRISELDAdose[!is.na(GRISELDAdose$Dose_delivered_mean),]
+            #Exclude flexible doses studies
+            DOSE=GRISELDAdose[GRISELDAdose$Dosing_schedule=="Fixed",]
             #delete single arm studies
-            DOSE=GRISELDAdose
             DOSE=exludesinglearmsdata.fun(DOSE,Study_No)
+            DOSE1=DOSE
             
             #now we need to re-create the dose (according to scripts) in the datafile DOSE
             #it also creates the databases needed for subgroup analysis DOSEless30 and DOSEtheur according to the hayasaka_ddd dose 
             # and a database DOSEj 
             source("Create dose in Griselda datafile DOSE.R")
            
-            
            
             ################################################################################################
             #  Analyses
@@ -45,6 +46,11 @@ source("Functions needed in the dose-response analysis.R")
             
             # to produce graphs for all drugs given between 0.75 and 30 mg
             source("Dosres all study designs 075 to 30.R")
+            
+            #keep the old database with many characteristics
+            keepit=!is.na(match((DOSE1$Study_No),unique(DOSE$Study_No)))
+            DOSE1=DOSE1[ keepit, ]
+            write.csv(DOSE1,"Data to be used only for study reporting.csv")
             
             ####SENSITIVITY ANALYSES
             
