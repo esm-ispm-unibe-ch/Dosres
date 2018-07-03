@@ -6,7 +6,7 @@
 #################################################################
 
 pdf("Sensitivity analyses to knots Meta-analytic dose plots for all drugs and doses.pdf")
-
+sink("Sensitivity analyses to knots.txt")
 #matrix with each row being a different set of knots
 #knotsmatrix=rbind(c(10,20,50),c(20,30,60),c(20,60,78))
 knotsmatrix=rbind(c(10,20,30),c(10,40,79),c(5,10,50),c(10,20,50))
@@ -64,4 +64,4 @@ for(j in 1:dim(knotsmatrix)[1]){
 }
 
 dev.off()
-
+sink()

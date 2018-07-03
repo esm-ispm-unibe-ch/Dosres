@@ -1,0 +1,316 @@
+Call:  dosresmeta(formula = logRR ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+    type = type, cases = Responders, n = No_randomised, data = mymoredata, 
+    se = selogRR, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 180.2127 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error         z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0141      0.0011   12.9403    0.0000    0.0119    0.0162  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0098      0.0009  -10.6873    0.0000   -0.0116   -0.0080  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0074  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0047                                    -1
+
+149 studies, 261 values, 2 fixed and 3 random-effects parameters
+   logLik        AIC        BIC  
+  59.9195  -109.8391   -92.0549  
+
+Call:  dosresmeta(formula = logRRdrop ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+    type = type, cases = Dropouts_total, n = No_randomised, data = mymoredata, 
+    se = selogRRdrop, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 27.8896 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub   
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0008      0.0013  0.5895    0.5556   -0.0018    0.0034   
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0015      0.0012  1.2289    0.2191   -0.0009    0.0038   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0058  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0049                               -0.9906
+
+149 studies, 262 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-29.4215   68.8430   86.6464  
+
+Call:  dosresmeta(formula = logRRdropAE ~ rcs(hayasaka_ddd, knots), 
+    id = Study_No, type = type, cases = Dropouts_sideeffects, 
+    n = No_randomised, data = mymoredata, se = selogRRdropAE, 
+    proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 200.2543 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0298      0.0030   9.7741    0.0000    0.0238    0.0357  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0147      0.0029  -4.9800    0.0000   -0.0204   -0.0089  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0103  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0123                                    -1
+
+135 studies, 242 values, 2 fixed and 3 random-effects parameters
+   logLik        AIC        BIC  
+-192.4969   394.9939   412.3971  
+
+Call:  dosresmeta(formula = logRR ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+    type = type, cases = Responders, n = No_randomised, data = mymoredata, 
+    se = selogRR, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 148.0630 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0098      0.0008  11.9811    0.0000    0.0082    0.0113  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0149      0.0020  -7.4892    0.0000   -0.0188   -0.0110  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0060  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0107                               -0.8741
+
+149 studies, 261 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+ 33.8347  -57.6695  -39.8853  
+
+Call:  dosresmeta(formula = logRRdrop ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+    type = type, cases = Dropouts_total, n = No_randomised, data = mymoredata, 
+    se = selogRRdrop, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 23.8718 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub   
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0021      0.0008  2.5650    0.0103    0.0005    0.0037  *
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0001      0.0013  0.0953    0.9241   -0.0023    0.0026   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0036  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0044                                    -1
+
+149 studies, 262 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-30.5105   71.0210   88.8244  
+
+Call:  dosresmeta(formula = logRRdropAE ~ rcs(hayasaka_ddd, knots), 
+    id = Study_No, type = type, cases = Dropouts_sideeffects, 
+    n = No_randomised, data = mymoredata, se = selogRRdropAE, 
+    proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 185.0367 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0213      0.0017  12.1989    0.0000    0.0179    0.0248  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0151      0.0023  -6.5674    0.0000   -0.0195   -0.0106  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0048  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0032                                    -1
+
+135 studies, 242 values, 2 fixed and 3 random-effects parameters
+   logLik        AIC        BIC  
+-195.5788   401.1576   418.5608  
+
+Call:  dosresmeta(formula = logRR ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+    type = type, cases = Responders, n = No_randomised, data = mymoredata, 
+    se = selogRR, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 177.2449 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error         z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0148      0.0011   12.8945    0.0000    0.0126    0.0171  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0498      0.0047  -10.5710    0.0000   -0.0591   -0.0406  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0074  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0212                               -0.9904
+
+149 studies, 261 values, 2 fixed and 3 random-effects parameters
+   logLik        AIC        BIC  
+  57.3865  -104.7730   -86.9889  
+
+Call:  dosresmeta(formula = logRRdrop ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+    type = type, cases = Dropouts_total, n = No_randomised, data = mymoredata, 
+    se = selogRRdrop, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 28.2676 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub   
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0009      0.0014  0.6228    0.5334   -0.0019    0.0037   
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0065      0.0062  1.0528    0.2925   -0.0056    0.0185   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0067  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0272                               -0.9969
+
+149 studies, 262 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-27.9225   65.8451   83.6485  
+
+Call:  dosresmeta(formula = logRRdropAE ~ rcs(hayasaka_ddd, knots), 
+    id = Study_No, type = type, cases = Dropouts_sideeffects, 
+    n = No_randomised, data = mymoredata, se = selogRRdropAE, 
+    proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 202.3738 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0309      0.0032   9.6286    0.0000    0.0246    0.0372  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0748      0.0147  -5.0885    0.0000   -0.1036   -0.0460  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0088  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0511                                    -1
+
+135 studies, 242 values, 2 fixed and 3 random-effects parameters
+   logLik        AIC        BIC  
+-191.5151   393.0303   410.4335  
+
+Call:  dosresmeta(formula = logRR ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+    type = type, cases = Responders, n = No_randomised, data = mymoredata, 
+    se = selogRR, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 172.6112 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0123      0.0010  12.8923    0.0000    0.0104    0.0141  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0197      0.0020  -9.9451    0.0000   -0.0236   -0.0159  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0065  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0096                               -0.9566
+
+149 studies, 261 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+ 53.9719  -97.9438  -80.1597  
+
+Call:  dosresmeta(formula = logRRdrop ~ rcs(hayasaka_ddd, knots), id = Study_No, 
+    type = type, cases = Dropouts_total, n = No_randomised, data = mymoredata, 
+    se = selogRRdrop, proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 28.3029 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub   
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0013      0.0011  1.1765    0.2394   -0.0009    0.0036   
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0023      0.0024  0.9365    0.3490   -0.0025    0.0070   
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0055  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0110                               -0.9987
+
+149 studies, 262 values, 2 fixed and 3 random-effects parameters
+  logLik       AIC       BIC  
+-28.9018   67.8036   85.6070  
+
+Call:  dosresmeta(formula = logRRdropAE ~ rcs(hayasaka_ddd, knots), 
+    id = Study_No, type = type, cases = Dropouts_sideeffects, 
+    n = No_randomised, data = mymoredata, se = selogRRdropAE, 
+    proc = "1stage")
+
+One-stage random-effects meta-analysis
+Estimation method: REML
+Covariance approximation: Greenland & Longnecker
+
+Chi2 model: X2 = 199.0343 (df = 2), p-value = 0.0000
+
+Fixed-effects coefficients
+                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub     
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0268      0.0024  10.9897    0.0000    0.0220    0.0316  ***
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0290      0.0054  -5.3824    0.0000   -0.0396   -0.0185  ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+
+Between-study random-effects (co)variance components
+                                       Std. Dev                                  Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0040  rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0139                               -0.9197
+
+135 studies, 242 values, 2 fixed and 3 random-effects parameters
+   logLik        AIC        BIC  
+-192.8252   395.6503   413.0535  
+

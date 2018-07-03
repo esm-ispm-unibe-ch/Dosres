@@ -98,7 +98,7 @@ with(predict(doseresRR, expo = TRUE, order = TRUE), {
 with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
 cat("\n-------- Splines dropout -----------------------------\n")
-knots=c(5,15,25)
+
 cat("******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies")
 
   doseresRR=dosresmeta(formula=logRRdrop~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_total,n=No_randomised,se=selogRRdrop,data=mymoredata)
@@ -139,7 +139,7 @@ with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
 cat("\n-------- Splines dropout AE -----------------------------\n")
 #cubic splines
-knots=c(5,15,25)
+
 cat("\n******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies\n")
 
   doseresRR=dosresmeta(formula=logRRdropAE~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_sideeffects,n=No_randomised,se=selogRRdropAE,data=mymoredata)

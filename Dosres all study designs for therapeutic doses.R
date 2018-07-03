@@ -24,7 +24,7 @@ DOSEtheur=cleandosresdata.fun(DOSEtheur,Study_No,logRRdropAE,Dropouts_sideeffect
 ##REPORTING
 cat("\n", paste("There are", length(unique(DOSEtheur$Study_No)), "studies comparing doses between 20 and 80 mg.", "\n"))
 cat("which include the drugs:", unique(DOSEtheur$Drug), "\n")
-cat("\nThe knots I used in the splines are at doses 40,55,70 mg")
+cat("\nThe knots I used in the splines are at doses 30,40,60 mg")
 
 ################
 #1. response
@@ -56,7 +56,7 @@ with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
 cat("\n-------- Splines response -----------------------------\n")
 #cubic splines
-knots=c(40,55,70)
+knots=c(30,40,60)
 cat("\n******For the spline model we have in total",length(unique(mymoredata$Study_No)),"studies")
 
   doseresRR=dosresmeta(formula=logRR~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Responders,n=No_randomised,se=selogRR,data=mymoredata)
@@ -98,7 +98,7 @@ with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
   
 cat("\n-------- Splines dropout -----------------------------\n")
-knots=c(40,55,70)
+
 cat("******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies")
 
   doseresRR=dosresmeta(formula=logRRdrop~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_total,n=No_randomised,se=selogRRdrop,data=mymoredata)
@@ -140,7 +140,7 @@ with(mymoredata,rug(hayasaka_ddd, quiet = TRUE))
 
 cat("\n-------- Splines dropout AE -----------------------------\n")
 #cubic splines
-knots=c(40,55,70)
+
 cat("\n******For the splines model we have in total",length(unique(mymoredata$Study_No)),"studies\n")
 
   doseresRR=dosresmeta(formula=logRRdropAE~rcs(hayasaka_ddd,knots), proc="1stage",id=Study_No, type=type,cases=Dropouts_sideeffects,n=No_randomised,se=selogRRdropAE,data=mymoredata)
