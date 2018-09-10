@@ -8,9 +8,11 @@
 # Create the data
 ##################
 tableDRUGsStudy=with(DOSE,table(Study_No,Drug))
-idtokeep=unique(DOSE$Study_No)[apply(tableDRUGsStudy,1,max)>=2]
+idtokeep1=unique(DOSE$Study_No)[apply(tableDRUGsStudy,1,max)>=2]#keep studies with at least 2 doses of the same drug
+idtokeep2=unique(DOSE$Study_No)[tableDRUGsStudy[,colnames(tableDRUGsStudy)=="placebo"]==1]#keep placebo-controlled
+idtokeep=unique(c(idtokeep1,idtokeep2))
 DOSE$sameDrug=with(DOSE,!is.na(match(Study_No, idtokeep)))
-DOSEsameDrug=DOSE[DOSE$sameDrug,]#create a database that only has studies wiht the same drug
+DOSEsameDrug=DOSE[DOSE$sameDrug,]#create a database that only has studies with the same drug
 
 #exlude arms that are not useful
 
@@ -62,15 +64,15 @@ cat(paste("We have",length(unique(DOSEsameDrug$Study_No)),"studies comparing dif
 cat("Nr of studies with multiple doses of the same drug")
 apply(table(DOSEsameDrug$Drug,DOSEsameDrug$Study_No)>0,1,sum)
 
-
+dis=names(apply(table(DOSEsameDrug$Drug,DOSEsameDrug$Study_No)>0,1,sum))#names of drugs with multiple doses per arm
+dis=dis[dis!="placebo"]
 
 
 #########################################
 ### Analysis per study
 #########################################
 
-dis=names(apply(table(DOSEsameDrug$Drug,DOSEsameDrug$Study_No)>0,1,sum))#names of drugs with multiple doses per arm
-dis=dis[dis!="placebo"]
+
 
 pdf("Per study dose response.pdf") 
 for(i in 1:length(dis))
@@ -140,7 +142,7 @@ dev.off()
 ##################################################################################
 ###       Meta-analysis of each drug                                             ##
 ##################################################################################
-
+sink("Per drug dose response.txt")
 pdf("Per drug dose response.pdf")
 for(i in 1:length(dis))
 {#iterate in drugs
@@ -213,7 +215,8 @@ for(i in 1:length(dis))
   
 }#END iterate in drugs
 
-dev.off()   
+dev.off() 
+sink()
 
 ################################################################
 ### Meta-analysis accross drugs using only the DOSEsameDrug ####

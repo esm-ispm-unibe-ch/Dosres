@@ -1,0 +1,117 @@
+*************************** 
+Studies in agomelatine 
+*************************** 
+There are 8 studies 
+The knots for i= 1 are: 13 
+ The knots for i= 1 are: 27 
+ The knots for i= 1 are: 40 
+*************************** 
+Studies in bupropion 
+*************************** 
+There are 7 studies 
+The knots for i= 2 are: 91 
+ The knots for i= 2 are: 182 
+ The knots for i= 2 are: 273 
+*************************** 
+Studies in citalopram 
+*************************** 
+There are 9 studies 
+The knots for i= 3 are: 10 
+ The knots for i= 3 are: 20 
+ The knots for i= 3 are: 30 
+*************************** 
+Studies in desvenlafaxine 
+*************************** 
+There are 11 studies 
+The knots for i= 4 are: 25 
+ The knots for i= 4 are: 50 
+ The knots for i= 4 are: 75 
+*************************** 
+Studies in duloxetine 
+*************************** 
+There are 19 studies 
+The knots for i= 5 are: 30 
+ The knots for i= 5 are: 61 
+ The knots for i= 5 are: 91 
+*************************** 
+Studies in escitalopram 
+*************************** 
+There are 11 studies 
+The knots for i= 6 are: 5 
+ The knots for i= 6 are: 9 
+ The knots for i= 6 are: 14 
+*************************** 
+Studies in fluoxetine 
+*************************** 
+There are 17 studies 
+The knots for i= 7 are: 10 
+ The knots for i= 7 are: 20 
+ The knots for i= 7 are: 30 
+*************************** 
+Studies in fluvoxamine 
+*************************** 
+There are 0 studies 
+not enough efficacy data 
+*************************** 
+Studies in levomilnacipran 
+*************************** 
+There are 2 studies 
+The knots for i= 9 are: 15 
+ The knots for i= 9 are: 30 
+ The knots for i= 9 are: 45 
+*************************** 
+Studies in milnacipran 
+*************************** 
+There are 4 studies 
+The knots for i= 10 are: 50 
+ The knots for i= 10 are: 100 
+ The knots for i= 10 are: 150 
+*************************** 
+Studies in mirtazapine 
+*************************** 
+There are 4 studies 
+The knots for i= 11 are: 13 
+ The knots for i= 11 are: 25 
+ The knots for i= 11 are: 38 
+*************************** 
+Studies in paroxetine 
+*************************** 
+There are 19 studies 
+The knots for i= 12 are: 8 
+ The knots for i= 12 are: 17 
+ The knots for i= 12 are: 25 
+*************************** 
+Studies in reboxetine 
+*************************** 
+There are 4 studies 
+The knots for i= 13 are: 3 
+ The knots for i= 13 are: 6 
+ The knots for i= 13 are: 9 
+*************************** 
+Studies in sertraline 
+*************************** 
+There are 4 studies 
+The knots for i= 14 are: 24 
+ The knots for i= 14 are: 49 
+ The knots for i= 14 are: 73 
+*************************** 
+Studies in venlafaxine 
+*************************** 
+There are 6 studies 
+The knots for i= 15 are: 37 
+ The knots for i= 15 are: 74 
+ The knots for i= 15 are: 111 
+*************************** 
+Studies in vilazodone 
+*************************** 
+There are 6 studies 
+The knots for i= 16 are: 5 
+ The knots for i= 16 are: 10 
+ The knots for i= 16 are: 15 
+*************************** 
+Studies in vortioxetine 
+*************************** 
+There are 13 studies 
+The knots for i= 17 are: 5 
+ The knots for i= 17 are: 10 
+ The knots for i= 17 are: 15 

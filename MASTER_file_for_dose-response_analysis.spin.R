@@ -1,6 +1,7 @@
             ############################################################
             #         Master analysis for Dose-response in Griselda
             ############################################################
+            
 #load libraries
 library(netmeta)
 library(meta)
@@ -29,12 +30,13 @@ source("Functions needed in the dose-response analysis.R")
             # and a database DOSEj 
             source("Create dose in Griselda datafile DOSE.R")
            
+           
             ################################################################################################
             #  Analyses
             ###############################################################################################
             
             # to produce graphs for each study and drug separately run
-            source("Dose-response analysis for each drug separately.R")
+            source("Dose-response analysis for each study and each drug separately.R")
             
             # to produce graphs for all drugs and doses together including placebo
             source("Dosres all study designs all doses.R")

@@ -33,7 +33,7 @@ Fixed-effects coefficients
              Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub   
 (Intercept)    0.0000      0.0007  0.0494    0.9606   -0.0013    0.0014   
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Between-study random-effects (co)variance components
   Std. Dev
@@ -62,16 +62,22 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 1.2614 (df = 2), p-value = 0.5322
 
 Fixed-effects coefficients
-                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub   
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0009      0.0011   0.8178    0.4135   -0.0013    0.0031   
-rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0031      0.0028  -1.1221    0.2618   -0.0086    0.0023   
+                                       Estimate  Std. Error        z
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0009      0.0011   0.8178
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0031      0.0028  -1.1221
+                                       Pr(>|z|)  95%ci.lb  95%ci.ub   
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.4135   -0.0013    0.0031   
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.2618   -0.0086    0.0023   
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Between-study random-effects (co)variance components
-                                       Std. Dev                                  Corr
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0013  rcs(hayasaka_ddd, knots)hayasaka_ddd
-rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0002                                0.9975
+                                       Std. Dev
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0013
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0002
+                                                                       Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd   rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'                                0.9975
 
 75 studies, 90 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
@@ -96,10 +102,12 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 21.5008 (df = 1), p-value = 0.0000
 
 Fixed-effects coefficients
-             Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-(Intercept)    0.0050      0.0011  4.6369    0.0000    0.0029    0.0070  ***
+             Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub
+(Intercept)    0.0050      0.0011  4.6369    0.0000    0.0029    0.0070
+                
+(Intercept)  ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Between-study random-effects (co)variance components
   Std. Dev
@@ -127,16 +135,22 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 17.7895 (df = 2), p-value = 0.0001
 
 Fixed-effects coefficients
-                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub    
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0065      0.0020   3.1687    0.0015    0.0025    0.0105  **
-rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0045      0.0055  -0.8195    0.4125   -0.0153    0.0063    
+                                       Estimate  Std. Error        z
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0065      0.0020   3.1687
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0045      0.0055  -0.8195
+                                       Pr(>|z|)  95%ci.lb  95%ci.ub    
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0015    0.0025    0.0105  **
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.4125   -0.0153    0.0063    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Between-study random-effects (co)variance components
-                                       Std. Dev                                  Corr
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0029  rcs(hayasaka_ddd, knots)hayasaka_ddd
-rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0141                                    -1
+                                       Std. Dev
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0029
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0141
+                                                                       Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd   rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'                                    -1
 
 77 studies, 90 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
@@ -160,10 +174,12 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 20.7591 (df = 1), p-value = 0.0000
 
 Fixed-effects coefficients
-             Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub     
-(Intercept)    0.0111      0.0024  4.5562    0.0000    0.0063    0.0159  ***
+             Estimate  Std. Error       z  Pr(>|z|)  95%ci.lb  95%ci.ub
+(Intercept)    0.0111      0.0024  4.5562    0.0000    0.0063    0.0159
+                
+(Intercept)  ***
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Between-study random-effects (co)variance components
   Std. Dev
@@ -194,16 +210,22 @@ Covariance approximation: Greenland & Longnecker
 Chi2 model: X2 = 21.6113 (df = 2), p-value = 0.0000
 
 Fixed-effects coefficients
-                                       Estimate  Std. Error        z  Pr(>|z|)  95%ci.lb  95%ci.ub    
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0125      0.0041   3.0285    0.0025    0.0044    0.0206  **
-rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0035      0.0102  -0.3387    0.7349   -0.0235    0.0166    
+                                       Estimate  Std. Error        z
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0125      0.0041   3.0285
+rcs(hayasaka_ddd, knots)hayasaka_ddd'   -0.0035      0.0102  -0.3387
+                                       Pr(>|z|)  95%ci.lb  95%ci.ub    
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0025    0.0044    0.0206  **
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.7349   -0.0235    0.0166    
 ---
-Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1 
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1 
 
 Between-study random-effects (co)variance components
-                                       Std. Dev                                  Corr
-rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0069  rcs(hayasaka_ddd, knots)hayasaka_ddd
-rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0207                               -0.6692
+                                       Std. Dev
+rcs(hayasaka_ddd, knots)hayasaka_ddd     0.0069
+rcs(hayasaka_ddd, knots)hayasaka_ddd'    0.0207
+                                                                       Corr
+rcs(hayasaka_ddd, knots)hayasaka_ddd   rcs(hayasaka_ddd, knots)hayasaka_ddd
+rcs(hayasaka_ddd, knots)hayasaka_ddd'                               -0.6692
 
 70 studies, 84 values, 2 fixed and 3 random-effects parameters
   logLik       AIC       BIC  
