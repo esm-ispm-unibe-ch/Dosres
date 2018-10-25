@@ -24,16 +24,16 @@ source("Functions needed in the dose-response analysis.R")
             DOSE=exludesinglearmsdata.fun(DOSE,Study_No)
             DOSE1=DOSE
             
-            #now we need to re-create the dose (according to scripts) in the datafile DOSE
-            #it also creates the databases needed for subgroup analysis DOSEless30 and DOSEtheur according to the hayasaka_ddd dose 
-            # and a database DOSEj 
+            #The following script creates the dose (fluoxetine equivalent) in the datafile DOSE
+            #it also creates the databases needed later for subgroup analysis DOSEless30 and DOSEtheur 
+            #according to the hayasaka_ddd dose and a database DOSEj 
             source("Create dose in Griselda datafile DOSE.R")
            
             ################################################################################################
             #  Analyses
             ###############################################################################################
             
-            # to produce graphs for each study and drug separately run
+            # to produce graphs for each drug separately run
             source("Dose-response analysis for each drug separately.R")
             
             # to produce graphs for all drugs and doses together including placebo
